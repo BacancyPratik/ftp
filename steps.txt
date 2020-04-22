@@ -1,0 +1,35 @@
+# https://medium.com/@harshitvaid000/how-to-create-ftp-user-by-ssh-on-the-server-fdb86ffec2bd
+
+
+sudo apt-get install vsftpd
+
+sudo nano /etc/vsftpd.conf
+
+change files 
+------------------------
+listen=YES
+anonymous_enable=YES
+local_enable=YES
+write_enable=YES
+chroot_local_user=YES
+-------------------------
+
+sudo service vsftpd restart
+
+sudo service vsftpd status
+
+sudo adduser bacancydev
+
+sudo chown root:root /home/bacancydev
+
+sudo usermod --home /var/www/html/test-dir/ bacancydev
+
+sudo service vsftpd restart
+
+*******************************
+Write permission using..
+
+#sudo usermod -a -G YOUR_USERNAME www-data
+
+sudo setfacl -R -m u:YOUR_USERNAME:rwx /var/www/html
+
